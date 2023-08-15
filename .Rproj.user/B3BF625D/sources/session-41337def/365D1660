@@ -1,9 +1,9 @@
 {
     "id": "365D1660",
-    "path": "~/GitHub/circr/Ouyang/R/reformat_file.R",
+    "path": "~/GitHub/Ouyang/R/reformat_file.R",
     "project_path": "R/reformat_file.R",
     "type": "r_source",
-    "hash": "2871712488",
+    "hash": "0",
     "contents": "",
     "dirty": false,
     "created": 1692064348117.0,
@@ -11,14 +11,16 @@
     "relative_order": 1,
     "properties": {
         "source_window_id": "",
-        "Source": "Source"
+        "Source": "Source",
+        "cursorPosition": "0,0",
+        "scrollLine": "1"
     },
     "folds": "",
-    "lastKnownWriteTime": 1692064329,
+    "lastKnownWriteTime": 1692120421,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1692064329,
+    "last_content_update": 1692120421,
     "read_only": false,
     "read_only_alternatives": []
 }

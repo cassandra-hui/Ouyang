@@ -1,26 +1,35 @@
-# Explanation of Metadata File:
-#
-#   The metadata file should be a CSV file with the following columns:
-#
-# Cage: The cage number corresponding to each row in the data.
-# Treatment: The treatment assigned to each cage or bird.
-# Sex: The sex of each cage or bird.
-# LightsOn: The time when the lights were turned on (e.g., "08:00 AM").
-# LightsOff: The time when the lights were turned off (e.g., "08:00 PM").
-# Here's how the first few lines of a metadata file might look:
-
-# Date,Cage,Treatment,Sex,LightsOn,LightsOff
-# 1,Control,Male,06:00 AM,06:00 PM
-# 2,Treatment,Female,06:00 AM,06:00 PM
-# 3,Control,Male,06:00 AM,06:00 PM
-# # ... (more rows)
-
-# Usage of the Function:
-#
-#   Make sure you have the attach_meta function defined.
-# Replace "metadata.csv" with the actual path to your metadata file.
-# Use the function like this:
-
+#' Attach Metadata to Reformatted Data Frame and Calculate Phase
+#'
+#' This function reads metadata from a CSV file, attaches it to the reformatted data frame,
+#' and calculates the phase based on LightsOn and LightsOff times.
+#'
+#' @param data A data frame containing reformatted data.
+#' @param metadata_file_path The path to the CSV file containing metadata.
+#'
+#' @return A data frame with attached metadata and calculated phase.
+#'
+#' @details The function reads the metadata from the specified CSV file and merges it with the
+#' reformatted data based on the "Cage" column. It then converts LightsOn and LightsOff times to
+#' POSIXct objects, calculates the phase for each row based on the time range defined by LightsOn
+#' and LightsOff, and formats LightsOn and LightsOff times without the date.
+#'
+#' @examples
+#' # Load required libraries and data
+#' library(dplyr)
+#' data <- read.csv("reformatted_data.csv")
+#' metadata_path <- "metadata.csv"
+#'
+#' # Attach metadata and calculate phase
+#' merged_data <- attach_meta(data, metadata_path)
+#'
+#' @importFrom dplyr merge
+#' @importFrom lubridate hour
+#'
+#' @export
+#'
+#' @seealso \code{\link{reformat_for_Rethomics}}, \code{\link{install_github}}
+#'
+#' @keywords data manipulation
 
 # Function to attach metadata to reformatted data frame and calculate phase
 attach_meta <- function(data, metadata_file_path) {
