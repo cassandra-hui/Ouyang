@@ -68,7 +68,6 @@ There are a couple of additional functions you may want to use.
 This function removes cages with zero hops over all the files used.
 
 ```r
-# Call the function to remove empty cages
 filtered_data <- remove_empty_cages(data)
 ```
 ### Function: bin_data
