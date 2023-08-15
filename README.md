@@ -77,7 +77,7 @@ filtered_data <- remove_empty_cages(data)
 This function allows the user to bin data into 5, 10, 15, ... ect. minutes for more compressed files and easier use. 
 
 ```r
-binned_data <- bin_data(data)
+binned_data <- bin_data(data, minutes_per_bin = 5)
 ```
 
 ## Plot Activity
@@ -101,7 +101,7 @@ If you would like to use more in-depth circadian and sleep analysis packages, yo
 
 ### Function: reformat_for_Rethomics
 
-You can use this function to reformat your data frame for this type of analysis. The output of this function is a data file containing activity, called "Monitor1.txt" and a new metadata file reformated to work with Rethomics, called "metadata.csv". This function will not work if you have any missing dates, be sure your data files are sequential. 
+You can use this function to reformat your data frame for this type of analysis. The output of this function is a data file containing activity, called "Monitor1.txt" and a new metadata file reformated to work with Rethomics, called "metadata.csv". This function will not work if you have any missing dates, be sure your data files are sequential. This function will also not work with the remove_empty_cages() or bin_data() functions. 
 
 ```r
 # Assuming your data frame is named 'data'
