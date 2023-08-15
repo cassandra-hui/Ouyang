@@ -1,13 +1,15 @@
 # Using Ouyang R Functions for Data Reformatting and Analysis
 
-This guide provides step-by-step instructions on how to use the provided R functions for data reformatting and analysis. The functions are designed to help with cleaning, organizing, and analyzing automated perch data from the Ouyang Lab.
+This guide provides step-by-step instructions on how to use the provided R functions for data reformatting and analysis. The functions are designed to help organize and analyze automated perch data from the Ouyang Lab.
 
 ## Table of Contents
 - [Prerequisites](#prerequisites)
 - [Installing Required Packages](#installing-required-packages)
 - [Reformatting Data](#reformatting-data)
 - [Attaching Metadata](#attaching-metadata)
-- [Removing Empty Cages](#removing-empty-cages)
+- [Optional Functions](#optional-functions)
+- [Plot Activity](#plot-activity)
+- [Rethomics Workflow](#rethomics-workflow)
 
 ## Prerequisites
 
@@ -27,62 +29,84 @@ install.packages(c("reshape2", "dplyr", "lubridate"))
 
 ### Function: reformat_data_files
 
-This function reorganizes the data files you have in a particular folder.
+This function reorganizes the data files you have in a particular folder. First you need to designate that folder and the files contained, then you can run the reformatting function.
 
 ```r
-source("reformat_data_files.R")  # Replace with the actual file path
 
-# Specify a vector of file paths
-file_paths <- c("~/path/to/file1.txt", "~/path/to/file2.txt")
 
-# Call the function to reformat data from multiple files
-combined_data <- reformat_data_files(file_paths)
+# Specify the directory containing the data files
+data_dir <- "~/my_path/Raw Data"
+
+# Get a list of all the data files in the directory
+file_paths <- list.files(data_dir, full.names = TRUE)
+
+# Reformat data files
+data <- reformat_data_files(file_paths)
 ```
 
-### Function: reformat_for_Rethomics
-
-This function reformats data and creates metadata.
-
-```r
-source("reformat_for_Rethomics.R")  # Replace with the actual file path
-
-# Read your data into a data frame (replace "your_data.csv" with the actual file name)
-data <- read.csv("your_data.csv")
-
-# Call the function to reformat data and create metadata
-reformat_for_Rethomics(data)
-```
 
 ## Attaching Metadata
 
 ### Function: attach_meta
 
-This function attaches metadata to a reformatted data frame and calculates the phase.
+This function attaches metadata to the reformatted data frame and calculates the phase. You will need to have a metadata file in your working directory like the sample shown. Let's assume it is called "meta.csv".
 
 ```r
-source("attach_meta.R")  # Replace with the actual file path
+# Attach metadata and calculate phase
+data <- attach_meta(data, "meta.csv")
 
-# Specify the path to the metadata file
-metadata_file_path <- "metadata.csv"
-
-# Call the function to attach metadata and calculate phase
-merged_data <- attach_meta(reformatted_data, metadata_file_path)
+# Print the final data frame with metadata and phase
+print(data)
 ```
 
-## Removing Empty Cages
+## Optional Functions 
+
+There are a couple of additional functions you may want to use. 
 
 ### Function: remove_empty_cages
 
-This function removes cages with zero HopsPerMinute values.
+This function removes cages with zero hops over all the files used.
 
 ```r
-source("remove_empty_cages.R")  # Replace with the actual file path
-
 # Call the function to remove empty cages
-filtered_data <- remove_empty_cages(merged_data)
+filtered_data <- remove_empty_cages(data)
+```
+### Function: bin_data
+
+This function allows the user to bin data into 5, 10, 15, ... ect. minutes for more compressed files and easier use. 
+
+```r
+binned_data <- bin_data(data)
+```
+
+## Plot Activity
+
+You can use this new data frame for analysis and plots. Here is a simple plot you can use to look at activity levels.
+
+```r
+library(ggplot2)
+act_plot <- ggplot(data, aes(x = Hour, y = Date, fill = HopsPerMinute)) +
+  geom_tile() +
+  facet_wrap(~ Cage, scales = "free_y") +
+  labs(x = "Hour", y = "Date", fill = "Hops") +
+  theme_minimal()
+
+act_plot
+```
+
+## Rethomics Workflow
+
+If you would like to use more in-depth circadian and sleep analysis packages, you will need to reformat your data (again) to fit the standard output files. One common R analysis is Rethomics (https://rethomics.github.io/).
+
+### Function: reformat_for_Rethomics
+
+You can use this function to reformat your data frame for this type of analysis. The output of this function is a data file containing activity, called "Monitor1.txt" and a new metadata file reformated to work with Rethomics, called "metadata.csv". This function will not work if you have any missing dates, be sure your data files are sequential. 
+
+```r
+# Assuming your data frame is named 'data'
+reformat_for_Rethomics(data)
 ```
 
 ---
 
-By following these instructions, you can effectively use the provided R functions to clean, organize, and analyze your automated perch data from the Ouyang Lab.
-```
+By following these instructions, you can effectively use the provided R functions to organize and analyze your automated perch data from the Ouyang Lab.
