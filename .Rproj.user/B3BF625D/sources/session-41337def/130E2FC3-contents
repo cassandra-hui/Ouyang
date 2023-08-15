@@ -41,8 +41,8 @@ attach_meta <- function(data, metadata_file_path) {
   merged_data$LightsOff <- as.POSIXct(merged_data$LightsOff, format = "%I:%M %p")
 
   # Calculate the phase
-  merged_data$Phase <- ifelse(merged_data$Hour >= hour(merged_data$LightsOn) &
-                                merged_data$Hour < hour(merged_data$LightsOff),
+  merged_data$Phase <- ifelse(merged_data$Hour >= lubridate::hour(merged_data$LightsOn) &
+                                merged_data$Hour < lubridate::hour(merged_data$LightsOff),
                               "day", "night")
 
   # Format LightsOn and LightsOff times without the date
