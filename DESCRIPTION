@@ -1,0 +1,11 @@
+Package: Ouyang
+Type: Package
+Title: Reformats data from the Ouyang lab.
+Version: 0.1.0
+Author: Cassandra Hui
+Maintainer: Cassandra Hui <cassandrakay15@gmail.com>
+Description: This package is built for perch data collected from the Ouyang lab.
+  It also reformats data files into a standard collection method for circadian analysis.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
