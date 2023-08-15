@@ -19,10 +19,12 @@ Before you begin, make sure you have the following prerequisites:
 
 ## Installing Required Packages
 
-The provided functions use several R packages. To install them, execute the following code in R:
+The provided functions use several R packages. To install them and this package, execute the following code in R:
 
 ```r
-install.packages(c("reshape2", "dplyr", "lubridate"))
+install.packages(c("devtools", "reshape2", "dplyr", "lubridate"))
+devtools::install_github("cassandra-hui/Ouyang")
+library(Ouyang)
 ```
 
 ## Reformatting Data
