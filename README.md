@@ -1,4 +1,3 @@
-```markdown
 # Using Ouyang R Functions for Data Reformatting and Analysis
 
 This guide provides step-by-step instructions on how to use the provided R functions for data reformatting and analysis. The functions are designed to help with cleaning, organizing, and analyzing automated perch data from the Ouyang Lab.
