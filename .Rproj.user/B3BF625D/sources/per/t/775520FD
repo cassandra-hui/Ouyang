@@ -1,26 +1,26 @@
 {
-    "id": "6544C0C6",
+    "id": "775520FD",
     "path": "~/GitHub/Ouyang/R/bin_data.R",
     "project_path": "R/bin_data.R",
     "type": "r_source",
-    "hash": "0",
+    "hash": "337431564",
     "contents": "",
     "dirty": false,
-    "created": 1692121406755.0,
+    "created": 1692124126733.0,
     "source_on_save": false,
-    "relative_order": 7,
+    "relative_order": 1,
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "0,0",
-        "scrollLine": "0"
+        "cursorPosition": "27,34",
+        "scrollLine": "14"
     },
     "folds": "",
     "lastKnownWriteTime": 1692124148,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1692124148,
+    "last_content_update": 1692124148028,
     "read_only": false,
     "read_only_alternatives": []
 }
