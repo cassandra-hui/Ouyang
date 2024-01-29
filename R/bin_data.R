@@ -23,7 +23,7 @@ bin_data <- function(data,
 
 
   data %>%
-    dplyr::mutate(Bin = as.integer((Minute - 1) %/% minutes_per_bin)) %>%
+    dplyr::mutate(Bin = as.integer((Minute) %/% minutes_per_bin)) %>%
     dplyr::group_by(Cage, Date, Hour, Bin, Treatment, Sex, Phase) %>%
     dplyr::summarise(HopsPerMinute = sum(HopsPerMinute)) %>%
                      #need to add a numerical value for bin_light to sum
